@@ -1,7 +1,7 @@
 // Recuperiamo gli elementi necessari
-const weatherIcon = document.querySelector('weather-icon');
-const weatherLocation = document.querySelector('weather-location');
-const weatherTemperature = document.querySelector('weather-temperature');
+const weatherIcon = document.querySelector('.weather-icon');
+const weatherLocation = document.querySelector('.weather-location');
+const weatherTemperature = document.querySelector('.weather-temperature');
 const suggestionParagraph = document.querySelector('.suggestion');
 
 // tag HTML
@@ -13,13 +13,13 @@ window.navigator.geolocation.getCurrentPosition(onSuccess, onError);
 // Per usare getCurrentPosition bisogna specificare una funzione d'errore e una di successo
 
 // Funzione da eseguire in caso d'errore
-function onError(error){
+function onError(error) {
     console.error(error);
     weatherLocation.innerText = 'Devi attivare la geolocalizzazione';
 }
 
 // Funzione da eseguire in caso di successo
-function onSuccess(position){
+function onSuccess(position) {
     console.log(position);
 
     // Prepariamo i dati per l'API
@@ -38,12 +38,12 @@ function onSuccess(position){
 
     // chiamiamo il servizio esterno con fetch
     fetch(apiUri)
-        .then(function (response){
+        .then(function (response) {
             // trasformo la mia risposta in un formato più snello e leggibile
             const data = response.json();
             return data;
         })
-        .then(function (data){
+        .then(function (data) {
             console.log(data);
 
             // Estrapoliamo le informazioni di cui abbiamo bisogno
@@ -57,11 +57,18 @@ function onSuccess(position){
 
             // Inseriamo questi dati dove vogliamo mostrarli
             weatherLocation.innerText = locationName;
+            weatherTemperature.innerText = `${temperature}°`;
+            weatherIcon.alt = description;
+            weatherIcon.src = `./images/${iconCode}.png`;
+            suggestionParagraph.innerText = suggestion;
+
+            // Rimuoviamo la classe 'js-loading'
+            rootElement.classList.remove('js-loading');
         });
 }
 
 // Funzione per recuperare il suggerimento giusto
-function getSuggestion(iconCode){
+function getSuggestion(iconCode) {
     const suggestions = {
         '01d': 'Ricordati la crema solare!',
         '01n': 'Buonanotte!',
