@@ -1,0 +1,84 @@
+/* CSS reset */
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+/* General rules */
+
+html{
+  font-family: 'Roboto', sans-serif;
+  line-height: 1;
+  color: black;
+  background: linear-gradient(#eaedfd, #89a4f8);
+  height: 100%;
+  background-attachment: fixed;
+}
+
+/* Container */
+.container{
+  width: 90%;
+  margin: 0 auto;
+  padding: 16px;
+}
+
+/* Logo */
+header img{
+  width: 50px;
+  height: auto;
+}
+
+/* Contenuto centrale */
+main{
+  text-align: center;
+}
+
+
+/* Contenitore meteo */
+.weather-info{
+  margin-bottom: 30px;
+}
+
+/* Informazioni meteo */
+.weather-icon{
+  max-width: 100%;
+  /* Effetto */
+  transition: transform 0.5s, opacity 1s;
+}
+
+.weather-location, .suggestion{
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.weather-temperature{
+  font-size: 112px;
+}
+
+/* Pannello consigli */
+.panel{
+  background-color: white;
+  border-radius: 10px;
+  padding: 20px;
+  /* Effetti */
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.panel h4{
+  font-size: 16px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  color: steelblue;
+}
+
+/* Effetti di caricamento */
+.js-loading .weather-icon{
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.js-loading .panel{
+  opacity: 0;
+  transform: scale(0);
+}
